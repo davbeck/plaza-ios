@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TCMasterViewController : UITableViewController
+@interface TCPlazaViewController : UITableViewController
 
 @end
