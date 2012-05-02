@@ -17,6 +17,13 @@
 		11969A631551D87500388E33 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11969A611551D87500388E33 /* MainStoryboard.storyboard */; };
 		11969A661551D87500388E33 /* TCMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11969A651551D87500388E33 /* TCMasterViewController.m */; };
 		11969A691551D87500388E33 /* TCDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11969A681551D87500388E33 /* TCDetailViewController.m */; };
+		11969A711551DB5600388E33 /* TCPlazaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11969A701551DB5600388E33 /* TCPlazaController.m */; };
+		11969A751551DFAD00388E33 /* TCItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 11969A741551DFAD00388E33 /* TCItem.m */; };
+		11969A781551DFC200388E33 /* TCTopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 11969A771551DFC200388E33 /* TCTopic.m */; };
+		11969A7B1551DFCF00388E33 /* TCPrayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 11969A7A1551DFCF00388E33 /* TCPrayer.m */; };
+		11969A7E1551DFDA00388E33 /* TCNeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 11969A7D1551DFDA00388E33 /* TCNeed.m */; };
+		11969A811551DFE600388E33 /* TCAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 11969A801551DFE600388E33 /* TCAlbum.m */; };
+		11969A841551DFF100388E33 /* TCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 11969A831551DFF100388E33 /* TCEvent.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +43,21 @@
 		11969A651551D87500388E33 /* TCMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCMasterViewController.m; sourceTree = "<group>"; };
 		11969A671551D87500388E33 /* TCDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCDetailViewController.h; sourceTree = "<group>"; };
 		11969A681551D87500388E33 /* TCDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCDetailViewController.m; sourceTree = "<group>"; };
+		11969A6F1551DB5600388E33 /* TCPlazaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPlazaController.h; sourceTree = "<group>"; };
+		11969A701551DB5600388E33 /* TCPlazaController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPlazaController.m; sourceTree = "<group>"; };
+		11969A731551DFAD00388E33 /* TCItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCItem.h; sourceTree = "<group>"; };
+		11969A741551DFAD00388E33 /* TCItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCItem.m; sourceTree = "<group>"; };
+		11969A761551DFC200388E33 /* TCTopic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTopic.h; sourceTree = "<group>"; };
+		11969A771551DFC200388E33 /* TCTopic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTopic.m; sourceTree = "<group>"; };
+		11969A791551DFCF00388E33 /* TCPrayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPrayer.h; sourceTree = "<group>"; };
+		11969A7A1551DFCF00388E33 /* TCPrayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPrayer.m; sourceTree = "<group>"; };
+		11969A7C1551DFDA00388E33 /* TCNeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCNeed.h; sourceTree = "<group>"; };
+		11969A7D1551DFDA00388E33 /* TCNeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCNeed.m; sourceTree = "<group>"; };
+		11969A7F1551DFE600388E33 /* TCAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAlbum.h; sourceTree = "<group>"; };
+		11969A801551DFE600388E33 /* TCAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCAlbum.m; sourceTree = "<group>"; };
+		11969A821551DFF100388E33 /* TCEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCEvent.h; sourceTree = "<group>"; };
+		11969A831551DFF100388E33 /* TCEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCEvent.m; sourceTree = "<group>"; };
+		11969A851551E03A00388E33 /* PlazaKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlazaKit.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +112,7 @@
 				11969A671551D87500388E33 /* TCDetailViewController.h */,
 				11969A681551D87500388E33 /* TCDetailViewController.m */,
 				11969A541551D87500388E33 /* Supporting Files */,
+				11969A721551DF9800388E33 /* PlazaKit */,
 			);
 			path = PlazaMobile;
 			sourceTree = "<group>";
@@ -104,6 +127,28 @@
 				11969A5F1551D87500388E33 /* PlazaMobile.entitlements */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		11969A721551DF9800388E33 /* PlazaKit */ = {
+			isa = PBXGroup;
+			children = (
+				11969A851551E03A00388E33 /* PlazaKit.h */,
+				11969A6F1551DB5600388E33 /* TCPlazaController.h */,
+				11969A701551DB5600388E33 /* TCPlazaController.m */,
+				11969A731551DFAD00388E33 /* TCItem.h */,
+				11969A741551DFAD00388E33 /* TCItem.m */,
+				11969A761551DFC200388E33 /* TCTopic.h */,
+				11969A771551DFC200388E33 /* TCTopic.m */,
+				11969A791551DFCF00388E33 /* TCPrayer.h */,
+				11969A7A1551DFCF00388E33 /* TCPrayer.m */,
+				11969A7C1551DFDA00388E33 /* TCNeed.h */,
+				11969A7D1551DFDA00388E33 /* TCNeed.m */,
+				11969A7F1551DFE600388E33 /* TCAlbum.h */,
+				11969A801551DFE600388E33 /* TCAlbum.m */,
+				11969A821551DFF100388E33 /* TCEvent.h */,
+				11969A831551DFF100388E33 /* TCEvent.m */,
+			);
+			name = PlazaKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +220,13 @@
 				11969A5E1551D87500388E33 /* TCAppDelegate.m in Sources */,
 				11969A661551D87500388E33 /* TCMasterViewController.m in Sources */,
 				11969A691551D87500388E33 /* TCDetailViewController.m in Sources */,
+				11969A711551DB5600388E33 /* TCPlazaController.m in Sources */,
+				11969A751551DFAD00388E33 /* TCItem.m in Sources */,
+				11969A781551DFC200388E33 /* TCTopic.m in Sources */,
+				11969A7B1551DFCF00388E33 /* TCPrayer.m in Sources */,
+				11969A7E1551DFDA00388E33 /* TCNeed.m in Sources */,
+				11969A811551DFE600388E33 /* TCAlbum.m in Sources */,
+				11969A841551DFF100388E33 /* TCEvent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
