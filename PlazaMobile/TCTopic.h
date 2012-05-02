@@ -10,4 +10,6 @@
 
 @interface TCTopic : TCItem
 
+@property (nonatomic, readonly) NSArray *comments;
+
 @end

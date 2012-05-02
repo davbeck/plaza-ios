@@ -9,6 +9,7 @@
 #import "TCPlazaController.h"
 
 #import "PlazaKit.h"
+#import "TCItem_Private.h"
 
 
 @implementation TCPlazaController {
@@ -94,6 +95,8 @@ static TCPlazaController *sharedInstance;
 								   [NSSortDescriptor sortDescriptorWithKey:@"starting_at" ascending:NO],
 								   [NSSortDescriptor sortDescriptorWithKey:@"created_at" ascending:NO],
 								   nil];
+		
+		_allItems = [[NSMutableSet alloc] init];
     }
     
     return self;
@@ -102,6 +105,74 @@ static TCPlazaController *sharedInstance;
 - (id)copy
 {
 	return self;
+}
+
+
+#pragma mark - Loading
+
+- (void)loadAll
+{
+	[self loadNextTopicPage];
+	[self loadNextEventPage];
+	[self loadNextPrayerPage];
+	[self loadNextNeedPage];
+	[self loadNextAlbumPage];
+}
+
+- (void)_loadPage:(NSUInteger)page withType:(NSString *)type
+{
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://livingstones.onthecity.org/plaza/%@.json?page=%u&per_page=10", type, page]]];
+	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+		NSArray *items = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+//		NSLog(@"items: %@", items);
+		
+		[items enumerateObjectsUsingBlock:^(NSDictionary *info, NSUInteger idx, BOOL *stop) {
+			[info enumerateKeysAndObjectsUsingBlock:^(NSString *type, NSDictionary *itemInfo, BOOL *stop) {
+				TCItem *item;
+				
+				if ([type isEqualToString:@"global_topic"]) {
+					item = [[TCTopic alloc] _initWithDictionary:itemInfo];
+				} else if ([type isEqualToString:@"global_need"]) {
+					item = [[TCNeed alloc] _initWithDictionary:itemInfo];
+				} else if ([type isEqualToString:@"global_prayer"]) {
+					item = [[TCPrayer alloc] _initWithDictionary:itemInfo];
+				} else if ([type isEqualToString:@"global_event"]) {
+					item = [[TCEvent alloc] _initWithDictionary:itemInfo];
+				} else if ([type isEqualToString:@"global_album"]) {
+					item = [[TCAlbum alloc] _initWithDictionary:itemInfo];
+				}
+				
+				if (item != nil) {
+					[_allItems addObject:item];
+				}
+			}];
+		}];
+	}];
+}
+
+- (void)loadNextTopicPage
+{
+	[self _loadPage:1 withType:@"topics"];
+}
+
+- (void)loadNextEventPage
+{
+	[self _loadPage:1 withType:@"events"];
+}
+
+- (void)loadNextPrayerPage
+{
+	[self _loadPage:1 withType:@"prayers"];
+}
+
+- (void)loadNextNeedPage
+{
+	[self _loadPage:1 withType:@"needs"];
+}
+
+- (void)loadNextAlbumPage
+{
+	[self _loadPage:1 withType:@"albums"];
 }
 
 @end

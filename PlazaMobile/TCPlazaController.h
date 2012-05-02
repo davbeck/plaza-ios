@@ -19,4 +19,6 @@
 @property (nonatomic, readonly) NSArray *needs;
 @property (nonatomic, readonly) NSArray *albums;
 
+- (void)loadAll;
+
 @end

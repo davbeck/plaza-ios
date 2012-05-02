@@ -7,7 +7,18 @@
 //
 
 #import "TCTopic.h"
+#import "TCItem_Private.h"
 
 @implementation TCTopic
+
+@synthesize comments = _comments;
+
+- (void)_updateWithDictionary:(NSDictionary *)dictionary
+{
+	[super _updateWithDictionary:dictionary];
+	
+	_serverID = [dictionary objectForKey:@"tuid"];
+	_comments = [dictionary objectForKey:@"posts"];
+}
 
 @end

@@ -9,6 +9,7 @@
 #import "TCMasterViewController.h"
 
 #import "TCDetailViewController.h"
+#import "PlazaKit.h"
 
 @interface TCMasterViewController () {
     NSMutableArray *_objects;
@@ -41,6 +42,11 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	[[TCPlazaController sharedController] loadAll];
 }
 
 - (void)insertNewObject:(id)sender

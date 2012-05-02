@@ -7,7 +7,15 @@
 //
 
 #import "TCEvent.h"
+#import "TCItem_Private.h"
 
 @implementation TCEvent
+
+- (void)_updateWithDictionary:(NSDictionary *)dictionary
+{
+	[super _updateWithDictionary:dictionary];
+	
+	_serverID = [dictionary objectForKey:@"euid"];
+}
 
 @end

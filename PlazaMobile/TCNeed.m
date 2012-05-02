@@ -7,7 +7,15 @@
 //
 
 #import "TCNeed.h"
+#import "TCItem_Private.h"
 
 @implementation TCNeed
+
+- (void)_updateWithDictionary:(NSDictionary *)dictionary
+{
+	[super _updateWithDictionary:dictionary];
+	
+	_serverID = [dictionary objectForKey:@"nuid"];
+}
 
 @end
