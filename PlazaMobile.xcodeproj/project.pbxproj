@@ -24,17 +24,17 @@
 		11969A4D1551D87500388E33 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		11969A4F1551D87500388E33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		11969A511551D87500388E33 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		11969A551551D87500388E33 /* PlazaMobile-Info.plist */ = {isa = PBXFileReference; path = "PlazaMobile-Info.plist"; sourceTree = "<group>"; };
+		11969A551551D87500388E33 /* PlazaMobile-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlazaMobile-Info.plist"; sourceTree = "<group>"; };
 		11969A571551D87500388E33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		11969A591551D87500388E33 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		11969A5B1551D87500388E33 /* PlazaMobile-Prefix.pch */ = {isa = PBXFileReference; path = "PlazaMobile-Prefix.pch"; sourceTree = "<group>"; };
-		11969A5C1551D87500388E33 /* TCAppDelegate.h */ = {isa = PBXFileReference; path = TCAppDelegate.h; sourceTree = "<group>"; };
+		11969A5B1551D87500388E33 /* PlazaMobile-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PlazaMobile-Prefix.pch"; sourceTree = "<group>"; };
+		11969A5C1551D87500388E33 /* TCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCAppDelegate.h; sourceTree = "<group>"; };
 		11969A5D1551D87500388E33 /* TCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCAppDelegate.m; sourceTree = "<group>"; };
 		11969A5F1551D87500388E33 /* PlazaMobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PlazaMobile.entitlements; sourceTree = "<group>"; };
 		11969A621551D87500388E33 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		11969A641551D87500388E33 /* TCMasterViewController.h */ = {isa = PBXFileReference; path = TCMasterViewController.h; sourceTree = "<group>"; };
+		11969A641551D87500388E33 /* TCMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCMasterViewController.h; sourceTree = "<group>"; };
 		11969A651551D87500388E33 /* TCMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCMasterViewController.m; sourceTree = "<group>"; };
-		11969A671551D87500388E33 /* TCDetailViewController.h */ = {isa = PBXFileReference; path = TCDetailViewController.h; sourceTree = "<group>"; };
+		11969A671551D87500388E33 /* TCDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCDetailViewController.h; sourceTree = "<group>"; };
 		11969A681551D87500388E33 /* TCDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
