@@ -8,13 +8,30 @@
 
 #import "TCAppDelegate.h"
 
+#import "TCPlazaController.h"
+
+
+const UInt8 TCLoadingObserverRef;
+#define TCLoadingObserver ((void *)&TCLoadingObserverRef)
+
+
 @implementation TCAppDelegate
 
 @synthesize window = _window;
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	if (context == TCLoadingObserver) {
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = [TCPlazaController sharedController].loading;
+	} else {
+		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+	}
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+	[[TCPlazaController sharedController] addObserver:self forKeyPath:@"loading" options:NSKeyValueObservingOptionOld context:TCLoadingObserver];
+    
     return YES;
 }
 							

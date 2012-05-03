@@ -16,6 +16,9 @@
 
 @property (nonatomic, strong) NSMutableSet *_allItemsUnsorted;
 @property (nonatomic, readonly) NSString *_cachePath;
+@property (nonatomic) NSUInteger _loadingCount;
+- (void)_startLoading;
+- (void)_finishLoading;
 
 - (void)_applicationWillResignActive:(NSNotification *)notification;
 
@@ -29,6 +32,7 @@
 #pragma mark - Properties
 
 @synthesize _allItemsUnsorted = __allItemsUnsorted;
+@synthesize _loadingCount = __loadingCount;
 
 - (NSArray *)allItems
 {
@@ -76,6 +80,32 @@
 		*stop = [item.serverID isEqualToString:serverID];
 		return *stop;
 	}] anyObject];
+}
+
++ (NSSet *)keyPathsForValuesAffectingLoading
+{
+	return [NSSet setWithObject:@"_loadingCount"];
+}
+
+- (BOOL)loading
+{
+	return self._loadingCount > 0;
+}
+
+- (void)_startLoading
+{
+	@synchronized(self) {
+		NSLog(@"self._loadingCount++: %u", self._loadingCount + 1);
+		self._loadingCount++;
+	}
+}
+
+- (void)_finishLoading
+{
+	@synchronized(self) {
+		NSLog(@"self._loadingCount--: %u", self._loadingCount - 1);
+		self._loadingCount--;
+	}
 }
 
 - (NSString *)_cachePath
@@ -161,6 +191,8 @@ static TCPlazaController *sharedInstance;
 
 - (void)_loadPage:(NSUInteger)page withType:(NSString *)type
 {
+	[self _startLoading];
+	
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://livingstones.onthecity.org/plaza/%@.json?page=%u&per_page=10", type, page]]];
 	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
 		NSArray *items = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
@@ -198,6 +230,8 @@ static TCPlazaController *sharedInstance;
 		
 		[[NSNotificationCenter defaultCenter] postNotificationName:TCPlazaDidAddItemsNotification object:self userInfo:[NSDictionary dictionaryWithObject:newItems forKey:TCPlazaNewItemsKey]];
 		[[NSNotificationCenter defaultCenter] postNotificationName:TCPlazaDidChangeItemsNotification object:self];
+		
+		[self _finishLoading];
 	}];
 }
 

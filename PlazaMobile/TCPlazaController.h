@@ -32,6 +32,8 @@
 @property (nonatomic, readonly) NSArray *albums;
 - (TCItem *)itemWithServerID:(NSString *)serverID;
 
+@property (nonatomic, readonly) BOOL loading;
+
 - (void)loadAll;
 
 @end

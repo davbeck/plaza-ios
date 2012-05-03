@@ -12,11 +12,23 @@
 #import "TCTopicCell.h"
 
 
-const UInt8 TCItemsObserver;
+const UInt8 TCLoadingObserverRef;
+#define TCLoadingObserver ((void *)&TCLoadingObserverRef)
 
 
 @implementation TCPlazaViewController {
 	EGORefreshTableHeaderView *_refreshHeaderView;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	if (context == TCLoadingObserver) {
+		if (![TCPlazaController sharedController].loading) {
+			[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+		}
+	} else {
+		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+	}
 }
 
 - (void)awakeFromNib
@@ -32,6 +44,7 @@ const UInt8 TCItemsObserver;
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didAddItems:) name:TCPlazaDidAddItemsNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRemoveItems:) name:TCPlazaDidRemoveItemsNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChangeItems:) name:TCPlazaDidChangeItemsNotification object:nil];
+	[[TCPlazaController sharedController] addObserver:self forKeyPath:@"loading" options:NSKeyValueObservingOptionOld context:TCLoadingObserver];
 	
 	_refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
 	_refreshHeaderView.delegate = self;
@@ -47,6 +60,7 @@ const UInt8 TCItemsObserver;
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:TCPlazaDidAddItemsNotification object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:TCPlazaDidRemoveItemsNotification object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:TCPlazaDidChangeItemsNotification object:nil];
+	[[TCPlazaController sharedController] removeObserver:self forKeyPath:nil context:TCLoadingObserver];
 	
 	_refreshHeaderView = nil;
 }
@@ -148,7 +162,7 @@ const UInt8 TCItemsObserver;
 
 - (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view
 {
-	return NO;
+	return [TCPlazaController sharedController].loading;
 }
 
 - (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
