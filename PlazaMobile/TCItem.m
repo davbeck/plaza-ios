@@ -79,6 +79,20 @@
 	[coder encodeObject:self.updatedAt forKey:@"updatedAt"];
 }
 
+- (BOOL)isEqual:(id)object
+{
+	if ([object isKindOfClass:[self class]]) {
+		return [self.serverID isEqual:((TCItem *)object).serverID];
+	}
+	
+	return NO;
+}
+
+- (NSUInteger)hash
+{
+	return [self.serverID hash] ^ ([self.serverID hash] >> 8);
+}
+
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"<%@: tuid = %@, title = %@, tags = %@, createdAt = %@, updatedAt = %@>", NSStringFromClass([self class]), self.serverID, self.title, self.tags, self.createdAt, self.updatedAt];

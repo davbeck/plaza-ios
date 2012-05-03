@@ -166,7 +166,9 @@ static TCPlazaController *sharedInstance;
 		NSArray *items = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
 //		NSLog(@"items: %@", items);
 		
-		[self willChangeValueForKey:@"allItems"];
+		[[NSNotificationCenter defaultCenter] postNotificationName:TCPlazaWillChangeItemsNotification object:self];
+		NSMutableArray *newItems = [[NSMutableArray alloc] init];
+		
 		
 		[items enumerateObjectsUsingBlock:^(NSDictionary *info, NSUInteger idx, BOOL *stop) {
 			[info enumerateKeysAndObjectsUsingBlock:^(NSString *type, NSDictionary *itemInfo, BOOL *stop) {
@@ -185,12 +187,17 @@ static TCPlazaController *sharedInstance;
 				}
 				
 				if (item != nil) {
-					[self._allItemsUnsorted addObject:item];
+					if (![self._allItemsUnsorted containsObject:item]) {
+						[self._allItemsUnsorted addObject:item];
+						[newItems addObject:item];
+					}
 				}
 			}];
 		}];
 		
-		[self didChangeValueForKey:@"allItems"];
+		
+		[[NSNotificationCenter defaultCenter] postNotificationName:TCPlazaDidAddItemsNotification object:self userInfo:[NSDictionary dictionaryWithObject:newItems forKey:TCPlazaNewItemsKey]];
+		[[NSNotificationCenter defaultCenter] postNotificationName:TCPlazaDidChangeItemsNotification object:self];
 	}];
 }
 

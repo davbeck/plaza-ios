@@ -17,15 +17,6 @@ const UInt8 TCItemsObserver;
 
 @implementation TCPlazaViewController
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-	if (context == &TCItemsObserver) {
-		[self.tableView reloadData];
-	} else {
-		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-	}
-}
-
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -35,7 +26,10 @@ const UInt8 TCItemsObserver;
 {
     [super viewDidLoad];
 	
-	[[TCPlazaController sharedController] addObserver:self forKeyPath:@"allItems" options:0 context:(void *)&TCItemsObserver];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willChangeItems:) name:TCPlazaWillChangeItemsNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didAddItems:) name:TCPlazaDidAddItemsNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRemoveItems:) name:TCPlazaDidRemoveItemsNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChangeItems:) name:TCPlazaDidChangeItemsNotification object:nil];
 }
 
 - (void)viewDidUnload
@@ -77,6 +71,38 @@ const UInt8 TCItemsObserver;
 	
     return cell;
 }
+
+#pragma mark - Notifications
+
+- (void)willChangeItems:(NSNotification *)notification
+{
+	[self.tableView beginUpdates];
+}
+
+- (void)didAddItems:(NSNotification *)notification
+{
+	for (TCItem *item in [notification.userInfo objectForKey:TCPlazaNewItemsKey]) {
+		NSUInteger index = [[TCPlazaController sharedController].allItems indexOfObject:item];
+		NSArray *indexPaths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:index inSection:0]];
+		[self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+	}
+}
+
+- (void)didRemoveItems:(NSNotification *)notification
+{
+	for (TCItem *item in [notification.userInfo objectForKey:TCPlazaOldItemsKey]) {
+		NSUInteger index = [[TCPlazaController sharedController].allItems indexOfObject:item];
+		NSArray *indexPaths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:index inSection:0]];
+		[self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+	}
+}
+
+- (void)didChangeItems:(NSNotification *)notification
+{
+	[self.tableView endUpdates];
+}
+
+
 
 //- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 //{

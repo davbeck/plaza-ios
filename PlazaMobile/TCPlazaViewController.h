@@ -10,4 +10,9 @@
 
 @interface TCPlazaViewController : UITableViewController
 
+- (void)willChangeItems:(NSNotification *)notification;
+- (void)didAddItems:(NSNotification *)notification;
+- (void)didRemoveItems:(NSNotification *)notification;
+- (void)didChangeItems:(NSNotification *)notification;
+
 @end

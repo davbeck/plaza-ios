@@ -11,6 +11,15 @@
 @class TCItem;
 
 
+#define TCPlazaWillChangeItemsNotification @"TCPlazaWillChangeItems"
+#define TCPlazaDidChangeItemsNotification @"TCPlazaDidChangeItems"
+#define TCPlazaDidAddItemsNotification @"TCPlazaDidAddItems"
+#define TCPlazaDidRemoveItemsNotification @"TCPlazaDidRemoveItems"
+
+#define TCPlazaNewItemsKey @"New"
+#define TCPlazaOldItemsKey @"Old"
+
+
 @interface TCPlazaController : NSObject
 
 + (TCPlazaController *)sharedController;
