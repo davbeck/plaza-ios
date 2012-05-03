@@ -9,13 +9,22 @@
 #import "TCPlazaViewController.h"
 
 #import "PlazaKit.h"
+#import "TCTopicCell.h"
 
-@interface TCPlazaViewController () {
-    NSMutableArray *_objects;
-}
-@end
+
+const UInt8 TCItemsObserver;
+
 
 @implementation TCPlazaViewController
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	if (context == &TCItemsObserver) {
+		[self.tableView reloadData];
+	} else {
+		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+	}
+}
 
 - (void)awakeFromNib
 {
@@ -25,12 +34,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	[[TCPlazaController sharedController] addObserver:self forKeyPath:@"allItems" options:0 context:(void *)&TCItemsObserver];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
+	
+	[[TCPlazaController sharedController] removeObserver:self forKeyPath:@"allItems" context:(void *)&TCItemsObserver];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -43,15 +55,6 @@
 	[[TCPlazaController sharedController] loadAll];
 }
 
-- (void)insertNewObject:(id)sender
-{
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
-    [_objects insertObject:[NSDate date] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
 
 #pragma mark - Table View
 
@@ -62,32 +65,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return _objects.count;
+	return [TCPlazaController sharedController].allItems.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    TCTopicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCell"];
 
-	NSDate *object = [_objects objectAtIndex:indexPath.row];
-	cell.textLabel.text = [object description];
+	TCItem *item = [[TCPlazaController sharedController].allItems objectAtIndex:indexPath.row];
+	cell.item = item;
+	
     return cell;
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }
 }
 
 //- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

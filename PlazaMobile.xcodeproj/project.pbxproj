@@ -23,6 +23,7 @@
 		11969A7E1551DFDA00388E33 /* TCNeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 11969A7D1551DFDA00388E33 /* TCNeed.m */; };
 		11969A811551DFE600388E33 /* TCAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 11969A801551DFE600388E33 /* TCAlbum.m */; };
 		11969A841551DFF100388E33 /* TCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 11969A831551DFF100388E33 /* TCEvent.m */; };
+		11969A8D1551F77200388E33 /* TCTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11969A8C1551F77200388E33 /* TCTopicCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,8 @@
 		11969A831551DFF100388E33 /* TCEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCEvent.m; sourceTree = "<group>"; };
 		11969A851551E03A00388E33 /* PlazaKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlazaKit.h; sourceTree = "<group>"; };
 		11969A861551E77100388E33 /* TCItem_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCItem_Private.h; sourceTree = "<group>"; };
+		11969A8B1551F77200388E33 /* TCTopicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTopicCell.h; sourceTree = "<group>"; };
+		11969A8C1551F77200388E33 /* TCTopicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTopicCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +110,8 @@
 				11969A611551D87500388E33 /* MainStoryboard.storyboard */,
 				11969A641551D87500388E33 /* TCPlazaViewController.h */,
 				11969A651551D87500388E33 /* TCPlazaViewController.m */,
+				11969A8B1551F77200388E33 /* TCTopicCell.h */,
+				11969A8C1551F77200388E33 /* TCTopicCell.m */,
 				11969A541551D87500388E33 /* Supporting Files */,
 				11969A721551DF9800388E33 /* PlazaKit */,
 			);
@@ -223,6 +228,7 @@
 				11969A7E1551DFDA00388E33 /* TCNeed.m in Sources */,
 				11969A811551DFE600388E33 /* TCAlbum.m in Sources */,
 				11969A841551DFF100388E33 /* TCEvent.m in Sources */,
+				11969A8D1551F77200388E33 /* TCTopicCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,16 +12,24 @@
 #import "TCItem_Private.h"
 
 
+@interface TCPlazaController ()
+
+@property (nonatomic, strong) NSMutableSet *_allItemsUnsorted;
+
+@end
+
+
 @implementation TCPlazaController {
-	NSMutableSet *_allItems;
 	NSArray *_defaultSortDescriptors;
 }
 
 #pragma mark - Properties
 
+@synthesize _allItemsUnsorted = __allItemsUnsorted;
+
 - (NSArray *)allItems
 {
-	return [_allItems sortedArrayUsingDescriptors:_defaultSortDescriptors];
+	return [self._allItemsUnsorted sortedArrayUsingDescriptors:_defaultSortDescriptors];
 }
 
 - (NSArray *)topics
@@ -33,9 +41,14 @@
 
 - (NSArray *)events
 {
-	return [self.allItems objectsAtIndexes:[self.allItems indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+	NSArray *events = [self.allItems objectsAtIndexes:[self.allItems indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
 		return [obj isKindOfClass:[TCEvent class]];
 	}]];
+	events = [events sortedArrayUsingDescriptors:[NSArray arrayWithObjects:
+												  [NSSortDescriptor sortDescriptorWithKey:@"starting_at" ascending:NO],
+												  [NSSortDescriptor sortDescriptorWithKey:@"created_at" ascending:NO],
+												  nil]];
+	return events;
 }
 
 - (NSArray *)prayers
@@ -92,11 +105,10 @@ static TCPlazaController *sharedInstance;
     self = [super init];
     if (self) {
         _defaultSortDescriptors = [NSArray arrayWithObjects:
-								   [NSSortDescriptor sortDescriptorWithKey:@"starting_at" ascending:NO],
-								   [NSSortDescriptor sortDescriptorWithKey:@"created_at" ascending:NO],
+								   [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO],
 								   nil];
 		
-		_allItems = [[NSMutableSet alloc] init];
+		self._allItemsUnsorted = [[NSMutableSet alloc] init];
     }
     
     return self;
@@ -126,6 +138,8 @@ static TCPlazaController *sharedInstance;
 		NSArray *items = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
 //		NSLog(@"items: %@", items);
 		
+		[self willChangeValueForKey:@"allItems"];
+		
 		[items enumerateObjectsUsingBlock:^(NSDictionary *info, NSUInteger idx, BOOL *stop) {
 			[info enumerateKeysAndObjectsUsingBlock:^(NSString *type, NSDictionary *itemInfo, BOOL *stop) {
 				TCItem *item;
@@ -143,10 +157,12 @@ static TCPlazaController *sharedInstance;
 				}
 				
 				if (item != nil) {
-					[_allItems addObject:item];
+					[self._allItemsUnsorted addObject:item];
 				}
 			}];
 		}];
+		
+		[self didChangeValueForKey:@"allItems"];
 	}];
 }
 
