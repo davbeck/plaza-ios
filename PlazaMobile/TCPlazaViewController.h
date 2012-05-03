@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EGORefreshTableHeaderView.h"
 
-@interface TCPlazaViewController : UITableViewController
+@interface TCPlazaViewController : UITableViewController <EGORefreshTableHeaderDelegate>
 
 - (void)willChangeItems:(NSNotification *)notification;
 - (void)didAddItems:(NSNotification *)notification;

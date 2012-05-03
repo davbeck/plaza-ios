@@ -15,7 +15,9 @@
 const UInt8 TCItemsObserver;
 
 
-@implementation TCPlazaViewController
+@implementation TCPlazaViewController {
+	EGORefreshTableHeaderView *_refreshHeaderView;
+}
 
 - (void)awakeFromNib
 {
@@ -30,13 +32,23 @@ const UInt8 TCItemsObserver;
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didAddItems:) name:TCPlazaDidAddItemsNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRemoveItems:) name:TCPlazaDidRemoveItemsNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChangeItems:) name:TCPlazaDidChangeItemsNotification object:nil];
+	
+	_refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
+	_refreshHeaderView.delegate = self;
+	[self.tableView addSubview:_refreshHeaderView];
+	[_refreshHeaderView refreshLastUpdatedDate];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
 	
-	[[TCPlazaController sharedController] removeObserver:self forKeyPath:@"allItems" context:(void *)&TCItemsObserver];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:TCPlazaWillChangeItemsNotification object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:TCPlazaDidAddItemsNotification object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:TCPlazaDidRemoveItemsNotification object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:TCPlazaDidChangeItemsNotification object:nil];
+	
+	_refreshHeaderView = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -112,5 +124,36 @@ const UInt8 TCItemsObserver;
 //        [[segue destinationViewController] setDetailItem:object];
 //    }
 //}
+
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+}
+
+
+#pragma mark - EGORefreshTableHeaderDelegate
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
+{
+	[[TCPlazaController sharedController] loadAll];
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view
+{
+	return NO;
+}
+
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
+{
+	return [NSDate date];
+}
 
 @end
