@@ -17,6 +17,7 @@
 
 @synthesize titleLabel = _titleLabel;
 @synthesize detailLabel = _detailLabel;
+@synthesize typeIconView = _typeIconView;
 
 - (void)setItem:(TCItem *)item
 {

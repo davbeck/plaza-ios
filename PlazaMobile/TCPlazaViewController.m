@@ -75,6 +75,15 @@ const UInt8 TCLoadingObserverRef;
 	[[TCPlazaController sharedController] loadAll];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"showItem"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        TCItem *item = [[TCPlazaController sharedController].allItems objectAtIndex:indexPath.row];
+        [[segue destinationViewController] setItem:item];
+    }
+}
+
 
 #pragma mark - Table View
 
@@ -127,17 +136,6 @@ const UInt8 TCLoadingObserverRef;
 {
 	[self.tableView endUpdates];
 }
-
-
-
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        NSDate *object = [_objects objectAtIndex:indexPath.row];
-//        [[segue destinationViewController] setDetailItem:object];
-//    }
-//}
 
 
 #pragma mark - UIScrollViewDelegate

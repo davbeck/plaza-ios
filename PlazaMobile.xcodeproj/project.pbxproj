@@ -44,6 +44,8 @@
 		11DA1B1E15533A47006FC774 /* plaza_prayer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11DA1B1415533A47006FC774 /* plaza_prayer@2x.png */; };
 		11DA1B1F15533A47006FC774 /* plaza_topic.png in Resources */ = {isa = PBXBuildFile; fileRef = 11DA1B1515533A47006FC774 /* plaza_topic.png */; };
 		11DA1B2015533A47006FC774 /* plaza_topic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11DA1B1615533A47006FC774 /* plaza_topic@2x.png */; };
+		11DA1B2315533DAD006FC774 /* TCItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA1B2215533DAD006FC774 /* TCItemViewController.m */; };
+		11DA1B2515533E8F006FC774 /* item.html in Resources */ = {isa = PBXBuildFile; fileRef = 11DA1B2415533E8F006FC774 /* item.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +102,9 @@
 		11DA1B1415533A47006FC774 /* plaza_prayer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plaza_prayer@2x.png"; sourceTree = "<group>"; };
 		11DA1B1515533A47006FC774 /* plaza_topic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plaza_topic.png; sourceTree = "<group>"; };
 		11DA1B1615533A47006FC774 /* plaza_topic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plaza_topic@2x.png"; sourceTree = "<group>"; };
+		11DA1B2115533DAC006FC774 /* TCItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCItemViewController.h; sourceTree = "<group>"; };
+		11DA1B2215533DAD006FC774 /* TCItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCItemViewController.m; sourceTree = "<group>"; };
+		11DA1B2415533E8F006FC774 /* item.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = item.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,8 +161,10 @@
 				11969A651551D87500388E33 /* TCPlazaViewController.m */,
 				11969A8B1551F77200388E33 /* TCTopicCell.h */,
 				11969A8C1551F77200388E33 /* TCTopicCell.m */,
-				11969A541551D87500388E33 /* Supporting Files */,
+				11DA1B2115533DAC006FC774 /* TCItemViewController.h */,
+				11DA1B2215533DAD006FC774 /* TCItemViewController.m */,
 				11969A721551DF9800388E33 /* PlazaKit */,
+				11969A541551D87500388E33 /* Supporting Files */,
 			);
 			path = PlazaMobile;
 			sourceTree = "<group>";
@@ -171,6 +178,7 @@
 				11969A591551D87500388E33 /* main.m */,
 				11969A5B1551D87500388E33 /* PlazaMobile-Prefix.pch */,
 				11969A5F1551D87500388E33 /* PlazaMobile.entitlements */,
+				11DA1B2415533E8F006FC774 /* item.html */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -337,6 +345,7 @@
 				11DA1B1E15533A47006FC774 /* plaza_prayer@2x.png in Resources */,
 				11DA1B1F15533A47006FC774 /* plaza_topic.png in Resources */,
 				11DA1B2015533A47006FC774 /* plaza_topic@2x.png in Resources */,
+				11DA1B2515533E8F006FC774 /* item.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +368,7 @@
 				11969A841551DFF100388E33 /* TCEvent.m in Sources */,
 				11969A8D1551F77200388E33 /* TCTopicCell.m in Sources */,
 				11DA1B0315533283006FC774 /* EGORefreshTableHeaderView.m in Sources */,
+				11DA1B2315533DAD006FC774 /* TCItemViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

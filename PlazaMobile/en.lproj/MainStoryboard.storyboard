@@ -64,6 +64,7 @@
                                     <outlet property="detailLabel" destination="sFz-UG-B4e" id="Qwp-UK-yKp"/>
                                     <outlet property="titleLabel" destination="0HI-fw-WkT" id="1ux-oD-x1G"/>
                                     <outlet property="typeIconView" destination="AN5-Cn-CUc" id="xZp-qE-xlC"/>
+                                    <segue destination="1wv-0N-smd" identifier="showItem" kind="push" id="mV7-Qp-vLD"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -78,20 +79,32 @@
             </objects>
             <point key="canvasLocation" x="459" y="64"/>
         </scene>
+        <!--Item View Controller-->
+        <scene sceneID="xNW-RS-khM">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mhJ-Tb-SEh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="1wv-0N-smd" customClass="TCItemViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1wt-R3-bAh">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="VQG-Nc-CFO">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gng-uD-Yeq"/>
+                    <connections>
+                        <outlet property="webView" destination="VQG-Nc-CFO" id="HHV-DV-LS0"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="936" y="64"/>
+        </scene>
     </scenes>
-    <classes>
-        <class className="TCPlazaViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TCPlazaViewController.h"/>
-        </class>
-        <class className="TCTopicCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TCTopicCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="detailLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="typeIconView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
