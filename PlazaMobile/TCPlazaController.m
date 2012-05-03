@@ -95,7 +95,6 @@
 - (void)_startLoading
 {
 	@synchronized(self) {
-		NSLog(@"self._loadingCount++: %u", self._loadingCount + 1);
 		self._loadingCount++;
 	}
 }
@@ -103,7 +102,6 @@
 - (void)_finishLoading
 {
 	@synchronized(self) {
-		NSLog(@"self._loadingCount--: %u", self._loadingCount - 1);
 		self._loadingCount--;
 	}
 }

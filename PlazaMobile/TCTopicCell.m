@@ -30,7 +30,7 @@
 	self.detailLabel.text = body;
 	
 	CGRect detailFrame = self.detailLabel.frame;
-	detailFrame.size.width = self.bounds.size.width - detailFrame.origin.x - 20.0;
+	detailFrame.size.width = self.bounds.size.width - detailFrame.origin.x - 25.0;
 	self.detailLabel.frame = detailFrame;
 	
 	[self.detailLabel sizeToFit];
@@ -38,6 +38,21 @@
 	detailFrame = self.detailLabel.frame;
 	detailFrame.size.height = MIN(detailFrame.size.height, self.bounds.size.height - detailFrame.origin.y - 5.0);
 	self.detailLabel.frame = detailFrame;
+	
+	
+	if ([_item isKindOfClass:[TCTopic class]]) {
+		self.typeIconView.image = [UIImage imageNamed:@"plaza_topic.png"];
+	} else if ([_item isKindOfClass:[TCEvent class]]) {
+		self.typeIconView.image = [UIImage imageNamed:@"plaza_event.png"];
+	} else if ([_item isKindOfClass:[TCPrayer class]]) {
+		self.typeIconView.image = [UIImage imageNamed:@"plaza_prayer.png"];
+	} else if ([_item isKindOfClass:[TCNeed class]]) {
+		self.typeIconView.image = [UIImage imageNamed:@"plaza_need.png"];
+	} else if ([_item isKindOfClass:[TCAlbum class]]) {
+		self.typeIconView.image = [UIImage imageNamed:@"plaza_album.png"];
+	} else {
+		self.typeIconView.image = [UIImage imageNamed:@"plaza_topic.png"];
+	}
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

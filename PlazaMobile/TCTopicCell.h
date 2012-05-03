@@ -17,5 +17,6 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *detailLabel;
+@property (nonatomic, strong) IBOutlet UIImageView *typeIconView;
 
 @end

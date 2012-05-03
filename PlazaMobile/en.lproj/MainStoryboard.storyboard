@@ -39,7 +39,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" id="0HI-fw-WkT">
-                                            <rect key="frame" x="20" y="5" width="275" height="20"/>
+                                            <rect key="frame" x="45" y="5" width="250" height="20"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -52,6 +52,10 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="AN5-Cn-CUc">
+                                            <rect key="frame" x="20" y="5" width="21" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -59,6 +63,7 @@
                                 <connections>
                                     <outlet property="detailLabel" destination="sFz-UG-B4e" id="Qwp-UK-yKp"/>
                                     <outlet property="titleLabel" destination="0HI-fw-WkT" id="1ux-oD-x1G"/>
+                                    <outlet property="typeIconView" destination="AN5-Cn-CUc" id="xZp-qE-xlC"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -83,6 +88,7 @@
             <relationships>
                 <relationship kind="outlet" name="detailLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="typeIconView" candidateClass="UIImageView"/>
             </relationships>
         </class>
     </classes>
