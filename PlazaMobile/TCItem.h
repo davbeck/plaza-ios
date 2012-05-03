@@ -18,4 +18,6 @@
 @property (nonatomic, readonly) NSDate *createdAt;
 @property (nonatomic, readonly) NSDate *updatedAt;
 
+@property (nonatomic, readonly) NSDate *sortDate;
+
 @end

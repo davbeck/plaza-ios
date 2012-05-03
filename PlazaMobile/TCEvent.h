@@ -10,4 +10,7 @@
 
 @interface TCEvent : TCItem
 
+@property (nonatomic, readonly) NSDate *startOn;
+@property (nonatomic, readonly) NSDate *endOn;
+
 @end

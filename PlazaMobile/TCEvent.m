@@ -11,6 +11,14 @@
 
 @implementation TCEvent
 
+@synthesize startOn = _startOn;
+@synthesize endOn = _endOn;
+
+- (NSDate *)sortDate
+{
+	return self.startOn;
+}
+
 - (void)_updateWithDictionary:(NSDictionary *)dictionary
 {
 	[super _updateWithDictionary:dictionary];

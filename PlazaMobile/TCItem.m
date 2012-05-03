@@ -19,6 +19,11 @@
 @synthesize createdAt = _createdAt;
 @synthesize updatedAt = _updatedAt;
 
+- (NSDate *)sortDate
+{
+	return self.createdAt;
+}
+
 - (id)_initWithDictionary:(NSDictionary *)dictionary
 {
     self = [super init];

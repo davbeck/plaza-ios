@@ -41,14 +41,9 @@
 
 - (NSArray *)events
 {
-	NSArray *events = [self.allItems objectsAtIndexes:[self.allItems indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+	return [self.allItems objectsAtIndexes:[self.allItems indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
 		return [obj isKindOfClass:[TCEvent class]];
 	}]];
-	events = [events sortedArrayUsingDescriptors:[NSArray arrayWithObjects:
-												  [NSSortDescriptor sortDescriptorWithKey:@"starting_at" ascending:NO],
-												  [NSSortDescriptor sortDescriptorWithKey:@"created_at" ascending:NO],
-												  nil]];
-	return events;
 }
 
 - (NSArray *)prayers
@@ -105,7 +100,7 @@ static TCPlazaController *sharedInstance;
     self = [super init];
     if (self) {
         _defaultSortDescriptors = [NSArray arrayWithObjects:
-								   [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO],
+								   [NSSortDescriptor sortDescriptorWithKey:@"sortDate" ascending:NO],
 								   nil];
 		
 		self._allItemsUnsorted = [[NSMutableSet alloc] init];
