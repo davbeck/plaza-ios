@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+@class TCItem;
+
+
 @interface TCPlazaController : NSObject
 
 + (TCPlazaController *)sharedController;
@@ -18,6 +21,7 @@
 @property (nonatomic, readonly) NSArray *prayers;
 @property (nonatomic, readonly) NSArray *needs;
 @property (nonatomic, readonly) NSArray *albums;
+- (TCItem *)itemWithServerID:(NSString *)serverID;
 
 - (void)loadAll;
 

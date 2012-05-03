@@ -8,6 +8,7 @@
 
 #import "TCEvent.h"
 #import "TCItem_Private.h"
+#import "TCPlazaController.h"
 
 @implementation TCEvent
 
@@ -19,11 +20,44 @@
 	return self.startOn;
 }
 
+- (id)_initWithDictionary:(NSDictionary *)dictionary
+{
+	id existing = [[TCPlazaController sharedController] itemWithServerID:[dictionary objectForKey:@"euid"]];
+	if (existing != nil) {
+		[existing _updateWithDictionary:dictionary];
+		return existing;
+	}
+	
+    self = [super _initWithDictionary:dictionary];
+    if (self != nil) {
+		_serverID = [dictionary objectForKey:@"euid"];
+    }
+	
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _startOn = [coder decodeObjectForKey:@"startOn"];
+        _endOn = [coder decodeObjectForKey:@"endOn"];
+    }
+	
+    return self;
+}
+
 - (void)_updateWithDictionary:(NSDictionary *)dictionary
 {
 	[super _updateWithDictionary:dictionary];
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder
+{
+	[super encodeWithCoder:coder];
 	
-	_serverID = [dictionary objectForKey:@"euid"];
+	[coder encodeObject:self.startOn forKey:@"startOn"];
+	[coder encodeObject:self.endOn forKey:@"endOn"];
 }
 
 @end

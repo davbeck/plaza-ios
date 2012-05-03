@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TCItem : NSObject
+@interface TCItem : NSObject <NSCoding>
 
 @property (nonatomic, readonly) NSString *serverID;
 @property (nonatomic, readonly) NSString *title;

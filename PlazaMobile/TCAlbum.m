@@ -8,14 +8,29 @@
 
 #import "TCAlbum.h"
 #import "TCItem_Private.h"
+#import "TCPlazaController.h"
 
 @implementation TCAlbum
+
+- (id)_initWithDictionary:(NSDictionary *)dictionary
+{
+	id existing = [[TCPlazaController sharedController] itemWithServerID:[dictionary objectForKey:@"auid"]];
+	if (existing != nil) {
+		[existing _updateWithDictionary:dictionary];
+		return existing;
+	}
+	
+    self = [super _initWithDictionary:dictionary];
+    if (self != nil) {
+		_serverID = [dictionary objectForKey:@"auid"];
+    }
+	
+    return self;
+}
 
 - (void)_updateWithDictionary:(NSDictionary *)dictionary
 {
 	[super _updateWithDictionary:dictionary];
-	
-	_serverID = [dictionary objectForKey:@"auid"];
 }
 
 - (NSString *)description

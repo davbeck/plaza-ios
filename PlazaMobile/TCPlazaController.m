@@ -15,6 +15,9 @@
 @interface TCPlazaController ()
 
 @property (nonatomic, strong) NSMutableSet *_allItemsUnsorted;
+@property (nonatomic, readonly) NSString *_cachePath;
+
+- (void)_applicationWillResignActive:(NSNotification *)notification;
 
 @end
 
@@ -67,6 +70,20 @@
 	}]];
 }
 
+- (TCItem *)itemWithServerID:(NSString *)serverID
+{
+	return [[self._allItemsUnsorted objectsWithOptions:0 passingTest:^BOOL(TCItem *item, BOOL *stop) {
+		*stop = [item.serverID isEqualToString:serverID];
+		return *stop;
+	}] anyObject];
+}
+
+- (NSString *)_cachePath
+{
+	NSString *cacheDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+	return [cacheDirectory stringByAppendingPathComponent:@"TCPlaza.cache"];
+}
+
 
 #pragma mark - Initialization
 
@@ -103,7 +120,13 @@ static TCPlazaController *sharedInstance;
 								   [NSSortDescriptor sortDescriptorWithKey:@"sortDate" ascending:NO],
 								   nil];
 		
-		self._allItemsUnsorted = [[NSMutableSet alloc] init];
+		self._allItemsUnsorted = [NSKeyedUnarchiver unarchiveObjectWithFile:self._cachePath];
+//		NSLog(@"self._allItemsUnsorted: %@", self._allItemsUnsorted);
+		if (self._allItemsUnsorted == nil) {
+			self._allItemsUnsorted = [[NSMutableSet alloc] init];
+		}
+		
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_applicationWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
     }
     
     return self;
@@ -112,6 +135,16 @@ static TCPlazaController *sharedInstance;
 - (id)copy
 {
 	return self;
+}
+
+
+#pragma mark - Notifications
+
+- (void)_applicationWillResignActive:(NSNotification *)notification
+{
+	//archive items
+//	NSLog(@"self._allItemsUnsorted: %@", self._allItemsUnsorted);
+	[NSKeyedArchiver archiveRootObject:self._allItemsUnsorted toFile:self._cachePath];
 }
 
 

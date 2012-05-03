@@ -19,6 +19,22 @@
 @synthesize createdAt = _createdAt;
 @synthesize updatedAt = _updatedAt;
 
+- (id)initWithCoder:(NSCoder *)coder
+{
+    self = [super init];
+    if (self) {
+        _serverID = [coder decodeObjectForKey:@"serverID"];
+        _title = [coder decodeObjectForKey:@"title"];
+        _bodyHTML = [coder decodeObjectForKey:@"bodyHTML"];
+        _tags = [coder decodeObjectForKey:@"tags"];
+        _URL = [coder decodeObjectForKey:@"URL"];
+        _createdAt = [coder decodeObjectForKey:@"createdAt"];
+        _updatedAt = [coder decodeObjectForKey:@"updatedAt"];
+    }
+	
+    return self;
+}
+
 - (NSDate *)sortDate
 {
 	return self.createdAt;
@@ -36,7 +52,7 @@
 
 - (void)_updateWithDictionary:(NSDictionary *)dictionary
 {
-	NSLog(@"dictionary: %@", dictionary);
+//	NSLog(@"dictionary: %@", dictionary);
 	
 	static NSDateFormatter *dateFormatter = nil;
 	if (dateFormatter == nil) {
@@ -52,9 +68,20 @@
 	_updatedAt = [dateFormatter dateFromString:[dictionary objectForKey:@"updated_at"]];
 }
 
+- (void)encodeWithCoder:(NSCoder *)coder
+{
+	[coder encodeObject:self.serverID forKey:@"serverID"];
+	[coder encodeObject:self.title forKey:@"title"];
+	[coder encodeObject:self.bodyHTML forKey:@"bodyHTML"];
+	[coder encodeObject:self.tags forKey:@"tags"];
+	[coder encodeObject:self.URL forKey:@"URL"];
+	[coder encodeObject:self.createdAt forKey:@"createdAt"];
+	[coder encodeObject:self.updatedAt forKey:@"updatedAt"];
+}
+
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"<Item: tuid = %@, title = %@, tags = %@, createdAt = %@, updatedAt = %@>", self.serverID, self.title, self.tags, self.createdAt, self.updatedAt];
+	return [NSString stringWithFormat:@"<%@: tuid = %@, title = %@, tags = %@, createdAt = %@, updatedAt = %@>", NSStringFromClass([self class]), self.serverID, self.title, self.tags, self.createdAt, self.updatedAt];
 }
 
 @end
