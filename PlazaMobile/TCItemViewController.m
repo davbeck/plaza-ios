@@ -28,11 +28,19 @@
 {
 	_item = item;
 	
+	static NSDateFormatter *dateFormatter = nil;
+	if (dateFormatter == nil) {
+		dateFormatter = [[NSDateFormatter alloc] init];
+		dateFormatter.dateStyle = NSDateFormatterShortStyle;
+		dateFormatter.timeStyle = NSDateFormatterShortStyle;
+		dateFormatter.doesRelativeDateFormatting = YES;
+	}
+	
 	_html = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"item" withExtension:@"html"] encoding:NSUTF8StringEncoding error:NULL];
 	_html = [_html stringByReplacingOccurrencesOfString:@"<%\\s*body\\s*%>" withString:_item.bodyHTML options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, _html.length)];
 	_html = [_html stringByReplacingOccurrencesOfString:@"<%\\s*title\\s*%>" withString:_item.title options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, _html.length)];
 	_html = [_html stringByReplacingOccurrencesOfString:@"<%\\s*URL\\s*%>" withString:[_item.URL description] options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, _html.length)];
-	_html = [_html stringByReplacingOccurrencesOfString:@"<%\\s*createdOn\\s*%>" withString:[_item.createdAt description] options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, _html.length)];
+	_html = [_html stringByReplacingOccurrencesOfString:@"<%\\s*createdOn\\s*%>" withString:[dateFormatter stringFromDate:_item.createdAt] options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, _html.length)];
 	_html = [_html stringByReplacingOccurrencesOfString:@"<%\\s*author\\s*%>" withString:_item.author options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, _html.length)];
 	
 	[self.webView loadHTMLString:_html baseURL:nil];
