@@ -15,6 +15,7 @@
 @property (nonatomic, readonly) NSString *bodyHTML;
 @property (nonatomic, readonly) NSSet *tags;
 @property (nonatomic, readonly) NSURL *URL;
+@property (nonatomic, readonly) NSString *author;
 @property (nonatomic, readonly) NSDate *createdAt;
 @property (nonatomic, readonly) NSDate *updatedAt;
 

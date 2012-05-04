@@ -13,10 +13,36 @@
 		   font-family: "Helvetica Neue", Helvetica;
 		   font-weight: 300;
 		}
+		
+		header {
+			border-bottom: solid 2px #ddd;
+			margin-bottom: 10px;
+			color: #555;
+		}
+		
+		#title {
+			font-size: 24px;
+			margin: 0px;
+			margin-bottom: 10px;
+		}
+		
+		#author {
+			font-weight: normal;
+			margin: 2px 0px;
+		}
+		
+		#date {
+			font-weight: normal;
+			margin: 2px 0px;
+		}
 	</style>
 </head>
 <body>
-	
+	<header>
+		<h2 id="title"><% title %></h2>
+		<h5 id="author">Posted by <strong><% author %></strong></h5>
+		<h5 id="date"><% createdOn %> | Share link: <a href="<% URL %>"><% URL %></a></h5>
+	</header>
 	
 	<div id="body">
 		<% body %>
