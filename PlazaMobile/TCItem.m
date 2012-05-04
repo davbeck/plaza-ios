@@ -10,13 +10,6 @@
 #import "TCItem_Private.h"
 
 
-@interface TCItem ()
-
-- (NSDate *)_dateWithServerString:(NSString *)serverString;
-
-@end
-
-
 @implementation TCItem
 
 @synthesize serverID = _serverID;

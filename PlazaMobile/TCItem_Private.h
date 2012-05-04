@@ -16,4 +16,6 @@
 - (id)_initWithDictionary:(NSDictionary *)dictionary;
 - (void)_updateWithDictionary:(NSDictionary *)dictionary;
 
+- (NSDate *)_dateWithServerString:(NSString *)serverString;
+
 @end

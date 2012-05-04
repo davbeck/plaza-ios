@@ -50,6 +50,9 @@
 - (void)_updateWithDictionary:(NSDictionary *)dictionary
 {
 	[super _updateWithDictionary:dictionary];
+	
+	_startOn = [self _dateWithServerString:[dictionary objectForKey:@"starting_at"]];
+	_endOn = [self _dateWithServerString:[dictionary objectForKey:@"ending_at"]];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder
