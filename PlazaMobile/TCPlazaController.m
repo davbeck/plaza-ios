@@ -145,7 +145,7 @@ static TCPlazaController *sharedInstance;
     self = [super init];
     if (self) {
         _defaultSortDescriptors = [NSArray arrayWithObjects:
-								   [NSSortDescriptor sortDescriptorWithKey:@"sortDate" ascending:YES],
+								   [NSSortDescriptor sortDescriptorWithKey:@"sortDate" ascending:NO],
 								   nil];
 		
 		self._allItemsUnsorted = [NSKeyedUnarchiver unarchiveObjectWithFile:self._cachePath];
