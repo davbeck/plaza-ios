@@ -19,4 +19,10 @@
 @property (nonatomic, strong) IBOutlet UILabel *detailLabel;
 @property (nonatomic, strong) IBOutlet UIImageView *typeIconView;
 
+@property (nonatomic, strong) IBOutlet UIView *dateView;
+@property (nonatomic, strong) IBOutlet UILabel *weekdayLabel;
+@property (nonatomic, strong) IBOutlet UILabel *dayLabel;
+@property (nonatomic, strong) IBOutlet UIView *dateShadowView;
+@property (nonatomic, strong) IBOutlet UIView *redBackgroundView;
+
 @end

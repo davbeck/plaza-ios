@@ -99,9 +99,15 @@ const UInt8 TCLoadingObserverRef;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TCTopicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCell"];
-
 	TCItem *item = [[TCPlazaController sharedController].allItems objectAtIndex:indexPath.row];
+	
+    TCTopicCell *cell;
+	if ([item isKindOfClass:[TCEvent class]]) {
+		cell = [tableView dequeueReusableCellWithIdentifier:@"EventCell"];
+	} else {
+		cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCell"];
+	}
+
 	cell.item = item;
 	
     return cell;
