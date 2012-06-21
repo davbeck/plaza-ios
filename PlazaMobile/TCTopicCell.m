@@ -20,11 +20,8 @@
 @synthesize detailLabel = _detailLabel;
 @synthesize typeIconView = _typeIconView;
 
-@synthesize dateView = _dateView;
 @synthesize weekdayLabel = _weekdayLabel;
 @synthesize dayLabel = _dayLabel;
-@synthesize dateShadowView = _dateShadowView;
-@synthesize redBackgroundView = _redBackgroundView;
 
 - (void)setItem:(TCItem *)item
 {
@@ -88,42 +85,6 @@
     if (self) {
     }
     return self;
-}
-
-- (void)awakeFromNib
-{
-	self.dateView.layer.masksToBounds = YES;
-	
-	self.dateView.layer.borderColor = [UIColor colorWithWhite:0.0 alpha:0.2].CGColor;
-	self.dateView.layer.borderWidth = 1.0;
-	
-	self.dateView.layer.cornerRadius = 5.0;
-	
-	self.dateShadowView.layer.shadowColor = [UIColor colorWithWhite:0.0 alpha:1.0].CGColor;
-	self.dateShadowView.layer.shadowOpacity = 0.3;
-	self.dateShadowView.layer.shadowOffset = CGSizeMake(0.0, 0.0);
-	self.dateShadowView.layer.shadowRadius = 2.0;
-	
-	self.redBackgroundView.layer.shadowColor = [UIColor colorWithWhite:0.0 alpha:1.0].CGColor;
-	self.redBackgroundView.layer.shadowOpacity = 0.7;
-	self.redBackgroundView.layer.shadowOffset = CGSizeMake(0.0, 0.0);
-	self.redBackgroundView.layer.shadowRadius = 2.0;
-}
-
-- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
-{
-	[super setHighlighted:highlighted animated:animated];
-	
-    self.dateView.backgroundColor = [UIColor whiteColor];
-	self.redBackgroundView.backgroundColor = [UIColor colorWithRed:0.874 green:0.000 blue:0.008 alpha:1.000];
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    self.dateView.backgroundColor = [UIColor whiteColor];
-	self.redBackgroundView.backgroundColor = [UIColor colorWithRed:0.874 green:0.000 blue:0.008 alpha:1.000];
 }
 
 @end

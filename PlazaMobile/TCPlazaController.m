@@ -25,9 +25,7 @@
 @end
 
 
-@implementation TCPlazaController {
-	NSArray *_defaultSortDescriptors;
-}
+@implementation TCPlazaController
 
 #pragma mark - Properties
 
@@ -36,7 +34,9 @@
 
 - (NSArray *)allItems
 {
-	return [self._allItemsUnsorted sortedArrayUsingDescriptors:_defaultSortDescriptors];
+    return [self._allItemsUnsorted.allObjects sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [[obj2 updatedAt] compare:[obj1 updatedAt]];
+    }];
 }
 
 - (NSArray *)topics
@@ -48,9 +48,13 @@
 
 - (NSArray *)events
 {
-	return [self.allItems objectsAtIndexes:[self.allItems indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-		return [obj isKindOfClass:[TCEvent class]];
-	}]];
+    NSSet *events = [self._allItemsUnsorted objectsPassingTest:^BOOL(id obj, BOOL *stop) {
+        return [obj isKindOfClass:[TCEvent class]];
+    }];
+    
+	return [events.allObjects sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [[obj1 startOn] compare:[obj2 startOn]];
+    }];
 }
 
 - (NSArray *)prayers
@@ -144,10 +148,6 @@ static TCPlazaController *sharedInstance;
 	
     self = [super init];
     if (self) {
-        _defaultSortDescriptors = [NSArray arrayWithObjects:
-								   [NSSortDescriptor sortDescriptorWithKey:@"sortDate" ascending:NO],
-								   nil];
-		
 		self._allItemsUnsorted = [NSKeyedUnarchiver unarchiveObjectWithFile:self._cachePath];
 //		NSLog(@"self._allItemsUnsorted: %@", self._allItemsUnsorted);
 		if (self._allItemsUnsorted == nil) {
@@ -191,7 +191,7 @@ static TCPlazaController *sharedInstance;
 {
 	[self _startLoading];
 	
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://livingstones.onthecity.org/plaza/%@.json?page=%u&per_page=10", type, page]]];
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://journeyon.onthecity.org/plaza/%@.json?page=%u&per_page=10", type, page]]];
 	[NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
 		NSArray *items = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
 //		NSLog(@"items: %@", items);

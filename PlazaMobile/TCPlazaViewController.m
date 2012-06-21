@@ -77,7 +77,7 @@ const UInt8 TCLoadingObserverRef;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"showItem"]) {
+    if ([[segue identifier] isEqualToString:@"showItem"] || [[segue identifier] isEqualToString:@"showCalendar"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         TCItem *item = [[TCPlazaController sharedController].allItems objectAtIndex:indexPath.row];
         [[segue destinationViewController] setItem:item];

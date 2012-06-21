@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11883A8D1554CB04001F1B4B /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 11883A8B1554CB04001F1B4B /* calendar.png */; };
+		11883A8E1554CB04001F1B4B /* calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11883A8C1554CB04001F1B4B /* calendar@2x.png */; };
 		11969A4E1551D87500388E33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11969A4D1551D87500388E33 /* UIKit.framework */; };
 		11969A501551D87500388E33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11969A4F1551D87500388E33 /* Foundation.framework */; };
 		11969A521551D87500388E33 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11969A511551D87500388E33 /* CoreGraphics.framework */; };
@@ -49,6 +51,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11883A8B1554CB04001F1B4B /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
+		11883A8C1554CB04001F1B4B /* calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar@2x.png"; sourceTree = "<group>"; };
 		11969A491551D87500388E33 /* PlazaMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlazaMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11969A4D1551D87500388E33 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		11969A4F1551D87500388E33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -258,6 +262,8 @@
 		11DA1B0C15533A3D006FC774 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				11883A8B1554CB04001F1B4B /* calendar.png */,
+				11883A8C1554CB04001F1B4B /* calendar@2x.png */,
 				11DA1B0D15533A47006FC774 /* plaza_album.png */,
 				11DA1B0E15533A47006FC774 /* plaza_album@2x.png */,
 				11DA1B0F15533A47006FC774 /* plaza_event.png */,
@@ -346,6 +352,8 @@
 				11DA1B1F15533A47006FC774 /* plaza_topic.png in Resources */,
 				11DA1B2015533A47006FC774 /* plaza_topic@2x.png in Resources */,
 				11DA1B2515533E8F006FC774 /* item.html in Resources */,
+				11883A8D1554CB04001F1B4B /* calendar.png in Resources */,
+				11883A8E1554CB04001F1B4B /* calendar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +456,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlazaMobile/PlazaMobile-Prefix.pch";
 				INFOPLIST_FILE = "PlazaMobile/PlazaMobile-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -460,6 +469,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PlazaMobile/PlazaMobile-Prefix.pch";
 				INFOPLIST_FILE = "PlazaMobile/PlazaMobile-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
