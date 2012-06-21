@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		11883A8D1554CB04001F1B4B /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 11883A8B1554CB04001F1B4B /* calendar.png */; };
 		11883A8E1554CB04001F1B4B /* calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11883A8C1554CB04001F1B4B /* calendar@2x.png */; };
+		118BB87615939CE9005038BE /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 118BB87415939CE9005038BE /* EventKit.framework */; };
+		118BB87715939CE9005038BE /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 118BB87515939CE9005038BE /* EventKitUI.framework */; };
 		11969A4E1551D87500388E33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11969A4D1551D87500388E33 /* UIKit.framework */; };
 		11969A501551D87500388E33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11969A4F1551D87500388E33 /* Foundation.framework */; };
 		11969A521551D87500388E33 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11969A511551D87500388E33 /* CoreGraphics.framework */; };
@@ -53,6 +55,8 @@
 /* Begin PBXFileReference section */
 		11883A8B1554CB04001F1B4B /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
 		11883A8C1554CB04001F1B4B /* calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar@2x.png"; sourceTree = "<group>"; };
+		118BB87415939CE9005038BE /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		118BB87515939CE9005038BE /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		11969A491551D87500388E33 /* PlazaMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlazaMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11969A4D1551D87500388E33 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		11969A4F1551D87500388E33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -116,6 +120,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				118BB87615939CE9005038BE /* EventKit.framework in Frameworks */,
+				118BB87715939CE9005038BE /* EventKitUI.framework in Frameworks */,
 				11DA1AF4155331B9006FC774 /* QuartzCore.framework in Frameworks */,
 				11969A4E1551D87500388E33 /* UIKit.framework in Frameworks */,
 				11969A501551D87500388E33 /* Foundation.framework in Frameworks */,
@@ -147,6 +153,8 @@
 		11969A4C1551D87500388E33 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				118BB87415939CE9005038BE /* EventKit.framework */,
+				118BB87515939CE9005038BE /* EventKitUI.framework */,
 				11DA1AF3155331B9006FC774 /* QuartzCore.framework */,
 				11969A4D1551D87500388E33 /* UIKit.framework */,
 				11969A4F1551D87500388E33 /* Foundation.framework */,

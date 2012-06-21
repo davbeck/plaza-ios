@@ -21,6 +21,18 @@
 @synthesize createdAt = _createdAt;
 @synthesize updatedAt = _updatedAt;
 
+- (NSString *)body
+{
+    NSRange range;
+    NSString *body = [self.bodyHTML copy];
+    
+    while ((range = [body rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound) {
+        body = [body stringByReplacingCharactersInRange:range withString:@""];
+    }
+    
+    return body;
+}
+
 - (id)initWithCoder:(NSCoder *)coder
 {
     self = [super init];

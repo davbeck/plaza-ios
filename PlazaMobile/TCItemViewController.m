@@ -110,12 +110,50 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+    if ([request.URL.scheme isEqualToString:@"action"]) {
+        if ([request.URL.resourceSpecifier isEqualToString:@"add-event"]) {
+            [self _addEvent];
+        }
+        
+        return NO;
+    }
+    
     if (navigationType != UIWebViewNavigationTypeOther) {
         [[UIApplication sharedApplication] openURL:request.URL];
         return NO;
     }
     
     return YES;
+}
+
+
+#pragma mark - EKEventEditViewDelegate
+
+- (void)_addEvent
+{
+    EKEventStore *eventStore = [[EKEventStore alloc] init];
+    
+    TCEvent *eventItem = (TCEvent *)self.item;
+    
+    EKEvent *event = [EKEvent eventWithEventStore:eventStore];
+    event.title = eventItem.title;
+    event.startDate = eventItem.startOn;
+    event.endDate = eventItem.endOn;
+    event.location = [NSString stringWithFormat:@"%@\n%@, %@ %@", [eventItem.address objectForKey:TCEventAddressStreetKey], [eventItem.address objectForKey:TCEventAddressCityKey], [eventItem.address objectForKey:TCEventAddressStateKey], [eventItem.address objectForKey:TCEventAddressZipKey]];
+    event.URL = eventItem.URL;
+    event.notes = eventItem.body;
+    [event setCalendar:[eventStore defaultCalendarForNewEvents]];
+    
+    EKEventEditViewController *eventController = [[EKEventEditViewController alloc] init];
+    eventController.event = event;
+    eventController.eventStore = eventStore;
+    eventController.editViewDelegate = self;
+    [self presentModalViewController:eventController animated:YES];
+}
+
+- (void)eventEditViewController:(EKEventEditViewController *)controller didCompleteWithAction:(EKEventEditViewAction)action
+{
+    [controller dismissModalViewControllerAnimated:YES];
 }
 
 @end

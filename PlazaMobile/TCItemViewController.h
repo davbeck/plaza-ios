@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <EventKit/EventKit.h>
+#import <EventKitUI/EventKitUI.h>
 
 @class TCItem;
 
 
-@interface TCItemViewController : UIViewController <UIWebViewDelegate>
+@interface TCItemViewController : UIViewController <UIWebViewDelegate, EKEventEditViewDelegate>
 
 @property (nonatomic, strong) TCItem *item;
 

@@ -13,6 +13,7 @@
 @property (nonatomic, readonly) NSString *serverID;
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic, readonly) NSString *bodyHTML;
+@property (nonatomic, readonly) NSString *body;
 @property (nonatomic, readonly) NSSet *tags;
 @property (nonatomic, readonly) NSURL *URL;
 @property (nonatomic, readonly) NSString *author;
