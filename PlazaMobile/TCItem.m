@@ -60,7 +60,7 @@
 	_title = [dictionary objectForKey:@"title"];
 	_bodyHTML = [dictionary objectForKey:@"body"];
 	_tags = [dictionary objectForKey:@"tags"];
-	_URL = [dictionary objectForKey:@"short_url"];
+	_URL = [NSURL URLWithString:[dictionary objectForKey:@"short_url"]];
 	_author = [[dictionary objectForKey:@"user"] objectForKey:@"long_name"];
 	_createdAt = [self _dateWithServerString:[dictionary objectForKey:@"created_at"]];
 	_updatedAt = [self _dateWithServerString:[dictionary objectForKey:@"updated_at"]];
@@ -74,8 +74,6 @@
 			dateFormatter = [[NSDateFormatter alloc] init];
 			[dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
 			[dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
-			
-			NSLog(@"tests now: %@", [dateFormatter stringFromDate:[NSDate date]]);
 		}
 	}
 	
