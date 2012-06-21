@@ -42,6 +42,37 @@
 	_html = [_html stringByReplacingOccurrencesOfString:@"<%\\s*URL\\s*%>" withString:[_item.URL description] options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, _html.length)];
 	_html = [_html stringByReplacingOccurrencesOfString:@"<%\\s*createdOn\\s*%>" withString:[dateFormatter stringFromDate:_item.createdAt] options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, _html.length)];
 	_html = [_html stringByReplacingOccurrencesOfString:@"<%\\s*author\\s*%>" withString:_item.author options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, _html.length)];
+    
+    
+    if ([_item isKindOfClass:[TCEvent class]]) {
+        TCEvent *event = (TCEvent *)_item;
+        
+        
+        _html = [_html stringByReplacingOccurrencesOfString:@"<%\\s*if\\s+event\\s*%>" withString:@"" options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, _html.length)];
+        _html = [_html stringByReplacingOccurrencesOfString:@"<%\\s*end\\s+event\\s*%>" withString:@"" options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, _html.length)];
+        
+        
+        _html = [_html stringByReplacingOccurrencesOfString:@"<%\\s*street\\s*%>" withString:[event.address objectForKey:TCEventAddressStreetKey] options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, _html.length)];
+        _html = [_html stringByReplacingOccurrencesOfString:@"<%\\s*city\\s*%>" withString:[event.address objectForKey:TCEventAddressCityKey] options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, _html.length)];
+        _html = [_html stringByReplacingOccurrencesOfString:@"<%\\s*state\\s*%>" withString:[event.address objectForKey:TCEventAddressStateKey] options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, _html.length)];
+        _html = [_html stringByReplacingOccurrencesOfString:@"<%\\s*zipcode\\s*%>" withString:[event.address objectForKey:TCEventAddressZipKey] options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, _html.length)];
+        
+        _html = [_html stringByReplacingOccurrencesOfString:@"<%\\s*start_time\\s*%>" withString:[NSDateFormatter localizedStringFromDate:event.startOn dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle] options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, _html.length)];
+        _html = [_html stringByReplacingOccurrencesOfString:@"<%\\s*end_time\\s*%>" withString:[NSDateFormatter localizedStringFromDate:event.endOn dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle] options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, _html.length)];
+        
+        NSDateFormatter *weekdayFormatter = [[NSDateFormatter alloc] init];
+        weekdayFormatter.dateFormat = @"EEEE";
+        _html = [_html stringByReplacingOccurrencesOfString:@"<%\\s*day_of_the_week\\s*%>" withString:[weekdayFormatter stringFromDate:event.endOn] options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, _html.length)];
+        _html = [_html stringByReplacingOccurrencesOfString:@"<%\\s*date\\s*%>" withString:[NSDateFormatter localizedStringFromDate:event.endOn dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterNoStyle] options:NSCaseInsensitiveSearch | NSRegularExpressionSearch range:NSMakeRange(0, _html.length)];
+    } else {
+        static NSRegularExpression *stripIf = nil;
+        if (stripIf == nil) {
+            stripIf = [NSRegularExpression regularExpressionWithPattern:@"<%\\s*if\\s+event\\s*%>.*<%\\s*end\\s+event\\s*%>" options:NSRegularExpressionDotMatchesLineSeparators error:NULL];
+        }
+        
+        _html = [stripIf stringByReplacingMatchesInString:_html options:NSCaseInsensitiveSearch range:NSMakeRange(0, _html.length) withTemplate:@""];
+    }
+    
 	
 	[self.webView loadHTMLString:_html baseURL:nil];
 }
@@ -72,6 +103,19 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
+#pragma mark - UIWebViewDelegate
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    if (navigationType != UIWebViewNavigationTypeOther) {
+        [[UIApplication sharedApplication] openURL:request.URL];
+        return NO;
+    }
+    
+    return YES;
 }
 
 @end

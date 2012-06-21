@@ -35,6 +35,44 @@
 			font-weight: normal;
 			margin: 2px 0px;
 		}
+        
+        .event_date_time_address {
+            -webkit-border-radius: 5px;
+            background: #eee;
+            color: #5d87a1;
+        }
+        
+        .event_date {
+            border-bottom: 1px solid #fff;
+            padding: 5px 10px 5px 10px;
+        }
+        
+        .calendar_date {
+            font-size: 30px;
+            line-height: 38px;
+            font-weight: bold;
+        }
+        
+        .weekday_name {
+            font-size: 20px;
+            line-height: 30px;
+        }
+        
+        .event_time {
+            font-size: 20px;
+            line-height: 24px;
+            border-bottom: 1px solid #fff;
+            padding: 3px 10px;
+        }
+        
+        .event_address {
+            display: block;
+            text-decoration: none;
+            font-size: 16px;
+            line-height: 18px;
+            color: #777;
+            padding: 3px 10px 10px 10px;
+        }
 	</style>
 </head>
 <body>
@@ -43,6 +81,20 @@
 		<h5 id="author">Posted by <strong><% author %></strong></h5>
 		<h5 id="date"><% createdOn %> | Share link: <a href="<% URL %>"><% URL %></a></h5>
 	</header>
+    
+    <% if event %>
+    <div class='event_date_time_address'>
+        <div class='event_date'>
+            <div class='calendar_date'><% date %></div>
+            <div class='weekday_name'><% day_of_the_week %></div>
+        </div>
+        <div class='event_time'> <% start_time %> – <% end_time %></div>
+        <a href="http://maps.google.com/?q=<% street %>,<% city %>,<% state %>,<% zipcode %>" class='event_address'>
+			<% street %><br />
+			<% city %> <% state %> <% zipcode %>
+        </a>
+    </div>
+    <% end event %>
 	
 	<div id="body">
 		<% body %>

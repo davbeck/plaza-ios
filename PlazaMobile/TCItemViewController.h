@@ -11,7 +11,7 @@
 @class TCItem;
 
 
-@interface TCItemViewController : UIViewController
+@interface TCItemViewController : UIViewController <UIWebViewDelegate>
 
 @property (nonatomic, strong) TCItem *item;
 

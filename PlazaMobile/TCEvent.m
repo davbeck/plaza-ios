@@ -14,6 +14,7 @@
 
 @synthesize startOn = _startOn;
 @synthesize endOn = _endOn;
+@synthesize address = _address;
 
 - (NSDate *)sortDate
 {
@@ -42,6 +43,8 @@
     if (self) {
         _startOn = [coder decodeObjectForKey:@"startOn"];
         _endOn = [coder decodeObjectForKey:@"endOn"];
+        
+        _address = [coder decodeObjectForKey:@"address"];
     }
 	
     return self;
@@ -53,6 +56,8 @@
 	
 	_startOn = [self _dateWithServerString:[dictionary objectForKey:@"starting_at"]];
 	_endOn = [self _dateWithServerString:[dictionary objectForKey:@"ending_at"]];
+    
+    _address = [dictionary objectForKey:@"addresses"];
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder
@@ -61,6 +66,8 @@
 	
 	[coder encodeObject:self.startOn forKey:@"startOn"];
 	[coder encodeObject:self.endOn forKey:@"endOn"];
+    
+    [coder encodeObject:self.address forKey:@"address"];
 }
 
 @end

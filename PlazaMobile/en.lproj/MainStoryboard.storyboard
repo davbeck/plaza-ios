@@ -154,6 +154,9 @@
                             <webView contentMode="scaleToFill" id="VQG-Nc-CFO">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="1wv-0N-smd" id="Hj1-7z-8Mz"/>
+                                </connections>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -165,7 +168,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mhJ-Tb-SEh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="936" y="64"/>
+            <point key="canvasLocation" x="968" y="64"/>
         </scene>
     </scenes>
     <resources>
