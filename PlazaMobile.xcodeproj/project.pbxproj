@@ -30,15 +30,6 @@
 		11969A841551DFF100388E33 /* TCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 11969A831551DFF100388E33 /* TCEvent.m */; };
 		11969A8D1551F77200388E33 /* TCTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11969A8C1551F77200388E33 /* TCTopicCell.m */; };
 		11DA1AF4155331B9006FC774 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11DA1AF3155331B9006FC774 /* QuartzCore.framework */; };
-		11DA1B0315533283006FC774 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11DA1AF915533283006FC774 /* EGORefreshTableHeaderView.m */; };
-		11DA1B0415533283006FC774 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 11DA1AFB15533283006FC774 /* blackArrow.png */; };
-		11DA1B0515533283006FC774 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11DA1AFC15533283006FC774 /* blackArrow@2x.png */; };
-		11DA1B0615533283006FC774 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 11DA1AFD15533283006FC774 /* blueArrow.png */; };
-		11DA1B0715533283006FC774 /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11DA1AFE15533283006FC774 /* blueArrow@2x.png */; };
-		11DA1B0815533283006FC774 /* grayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 11DA1AFF15533283006FC774 /* grayArrow.png */; };
-		11DA1B0915533283006FC774 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11DA1B0015533283006FC774 /* grayArrow@2x.png */; };
-		11DA1B0A15533283006FC774 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 11DA1B0115533283006FC774 /* whiteArrow.png */; };
-		11DA1B0B15533283006FC774 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11DA1B0215533283006FC774 /* whiteArrow@2x.png */; };
 		11DA1B1715533A47006FC774 /* plaza_album.png in Resources */ = {isa = PBXBuildFile; fileRef = 11DA1B0D15533A47006FC774 /* plaza_album.png */; };
 		11DA1B1815533A47006FC774 /* plaza_album@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11DA1B0E15533A47006FC774 /* plaza_album@2x.png */; };
 		11DA1B1915533A47006FC774 /* plaza_event.png in Resources */ = {isa = PBXBuildFile; fileRef = 11DA1B0F15533A47006FC774 /* plaza_event.png */; };
@@ -92,16 +83,6 @@
 		11969A8B1551F77200388E33 /* TCTopicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTopicCell.h; sourceTree = "<group>"; };
 		11969A8C1551F77200388E33 /* TCTopicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTopicCell.m; sourceTree = "<group>"; };
 		11DA1AF3155331B9006FC774 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		11DA1AF815533283006FC774 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
-		11DA1AF915533283006FC774 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
-		11DA1AFB15533283006FC774 /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
-		11DA1AFC15533283006FC774 /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
-		11DA1AFD15533283006FC774 /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
-		11DA1AFE15533283006FC774 /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
-		11DA1AFF15533283006FC774 /* grayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayArrow.png; sourceTree = "<group>"; };
-		11DA1B0015533283006FC774 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
-		11DA1B0115533283006FC774 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
-		11DA1B0215533283006FC774 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		11DA1B0D15533A47006FC774 /* plaza_album.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plaza_album.png; sourceTree = "<group>"; };
 		11DA1B0E15533A47006FC774 /* plaza_album@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plaza_album@2x.png"; sourceTree = "<group>"; };
 		11DA1B0F15533A47006FC774 /* plaza_event.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plaza_event.png; sourceTree = "<group>"; };
@@ -139,7 +120,6 @@
 			children = (
 				114FF96D173030DA00C09716 /* Default-568h@2x.png */,
 				11969A531551D87500388E33 /* PlazaMobile */,
-				11DA1AEB1553316B006FC774 /* 3rd Party */,
 				11969A4C1551D87500388E33 /* Frameworks */,
 				11969A4A1551D87500388E33 /* Products */,
 			);
@@ -221,55 +201,6 @@
 			name = PlazaKit;
 			sourceTree = "<group>";
 		};
-		11DA1AEB1553316B006FC774 /* 3rd Party */ = {
-			isa = PBXGroup;
-			children = (
-				11DA1AF515533283006FC774 /* EGOTableViewPullRefresh */,
-			);
-			name = "3rd Party";
-			sourceTree = "<group>";
-		};
-		11DA1AF515533283006FC774 /* EGOTableViewPullRefresh */ = {
-			isa = PBXGroup;
-			children = (
-				11DA1AF615533283006FC774 /* Classes */,
-				11DA1AFA15533283006FC774 /* Resources */,
-			);
-			path = EGOTableViewPullRefresh;
-			sourceTree = "<group>";
-		};
-		11DA1AF615533283006FC774 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				11DA1AF715533283006FC774 /* View */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		11DA1AF715533283006FC774 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				11DA1AF815533283006FC774 /* EGORefreshTableHeaderView.h */,
-				11DA1AF915533283006FC774 /* EGORefreshTableHeaderView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		11DA1AFA15533283006FC774 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				11DA1AFB15533283006FC774 /* blackArrow.png */,
-				11DA1AFC15533283006FC774 /* blackArrow@2x.png */,
-				11DA1AFD15533283006FC774 /* blueArrow.png */,
-				11DA1AFE15533283006FC774 /* blueArrow@2x.png */,
-				11DA1AFF15533283006FC774 /* grayArrow.png */,
-				11DA1B0015533283006FC774 /* grayArrow@2x.png */,
-				11DA1B0115533283006FC774 /* whiteArrow.png */,
-				11DA1B0215533283006FC774 /* whiteArrow@2x.png */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		11DA1B0C15533A3D006FC774 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,14 +275,6 @@
 				11969A581551D87500388E33 /* InfoPlist.strings in Resources */,
 				11969A601551D87500388E33 /* PlazaMobile.entitlements in Resources */,
 				11969A631551D87500388E33 /* MainStoryboard.storyboard in Resources */,
-				11DA1B0415533283006FC774 /* blackArrow.png in Resources */,
-				11DA1B0515533283006FC774 /* blackArrow@2x.png in Resources */,
-				11DA1B0615533283006FC774 /* blueArrow.png in Resources */,
-				11DA1B0715533283006FC774 /* blueArrow@2x.png in Resources */,
-				11DA1B0815533283006FC774 /* grayArrow.png in Resources */,
-				11DA1B0915533283006FC774 /* grayArrow@2x.png in Resources */,
-				11DA1B0A15533283006FC774 /* whiteArrow.png in Resources */,
-				11DA1B0B15533283006FC774 /* whiteArrow@2x.png in Resources */,
 				11DA1B1715533A47006FC774 /* plaza_album.png in Resources */,
 				11DA1B1815533A47006FC774 /* plaza_album@2x.png in Resources */,
 				11DA1B1915533A47006FC774 /* plaza_event.png in Resources */,
@@ -387,7 +310,6 @@
 				11969A811551DFE600388E33 /* TCAlbum.m in Sources */,
 				11969A841551DFF100388E33 /* TCEvent.m in Sources */,
 				11969A8D1551F77200388E33 /* TCTopicCell.m in Sources */,
-				11DA1B0315533283006FC774 /* EGORefreshTableHeaderView.m in Sources */,
 				11DA1B2315533DAD006FC774 /* TCItemViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

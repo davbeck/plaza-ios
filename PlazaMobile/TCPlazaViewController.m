@@ -16,15 +16,13 @@ const UInt8 TCLoadingObserverRef;
 #define TCLoadingObserver ((void *)&TCLoadingObserverRef)
 
 
-@implementation TCPlazaViewController {
-	EGORefreshTableHeaderView *_refreshHeaderView;
-}
+@implementation TCPlazaViewController
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
 	if (context == TCLoadingObserver) {
 		if (![TCPlazaController sharedController].loading) {
-			[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+            [self.refreshControl endRefreshing];
 		}
 	} else {
 		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -45,11 +43,9 @@ const UInt8 TCLoadingObserverRef;
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRemoveItems:) name:TCPlazaDidRemoveItemsNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChangeItems:) name:TCPlazaDidChangeItemsNotification object:nil];
 	[[TCPlazaController sharedController] addObserver:self forKeyPath:@"loading" options:NSKeyValueObservingOptionOld context:TCLoadingObserver];
-	
-	_refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
-	_refreshHeaderView.delegate = self;
-	[self.tableView addSubview:_refreshHeaderView];
-	[_refreshHeaderView refreshLastUpdatedDate];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)viewDidUnload
@@ -61,8 +57,6 @@ const UInt8 TCLoadingObserverRef;
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:TCPlazaDidRemoveItemsNotification object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:TCPlazaDidChangeItemsNotification object:nil];
 	[[TCPlazaController sharedController] removeObserver:self forKeyPath:nil context:TCLoadingObserver];
-	
-	_refreshHeaderView = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -73,6 +67,7 @@ const UInt8 TCLoadingObserverRef;
 - (void)viewDidAppear:(BOOL)animated
 {
 	[[TCPlazaController sharedController] loadAll];
+    [self.refreshControl beginRefreshing];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -144,34 +139,11 @@ const UInt8 TCLoadingObserverRef;
 }
 
 
-#pragma mark - UIScrollViewDelegate
+#pragma mark - Actions
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (IBAction)refresh:(id)sender
 {
-	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
-}
-
-
-#pragma mark - EGORefreshTableHeaderDelegate
-
-- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
-{
-	[[TCPlazaController sharedController] loadAll];
-}
-
-- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view
-{
-	return [TCPlazaController sharedController].loading;
-}
-
-- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
-{
-	return [NSDate date];
+    [[TCPlazaController sharedController] loadAll];
 }
 
 @end
